@@ -1,21 +1,31 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+      project: 'tsconfig.json',
+      tsconfigRootDir: __dirname,
+      sourceType: 'module',
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:vue/vue3-essential"
+    plugins: [
+      '@typescript-eslint/eslint-plugin',
+      'prettier'
     ],
-    "overrides": [
+    extends: [
+      'plugin:@typescript-eslint/recommended',
+      'plugin:prettier/recommended',
     ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
+    root: true,
+    env: {
+      node: true,
+      jest: true,
     },
-    "plugins": [
-        "vue"
-    ],
-    "rules": {
-    }
-}
+    ignorePatterns: ['.eslintrc.js'],
+    rules: {
+      '@typescript-eslint/interface-name-prefix': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      "indent": ["warn", 4],
+      "max-len": ["warn", { "code": 120 }],
+      "prettier/prettier": "off"
+    },
+  };

@@ -1,29 +1,31 @@
-// https://eslint.org/docs/user-guide/configuring
-
 module.exports = {
-  root: true,
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    parser: 'babel-eslint'
+    project: 'tsconfig.json',
+    tsconfigRootDir: __dirname,
+    sourceType: 'module',
   },
-  env: {
-    browser: true,
-  },
-  extends: [
-    // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
-    // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-    'plugin:vue/essential', 
-    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-    'standard'
-  ],
-  // required to lint *.vue files
   plugins: [
-    'vue'
+    '@typescript-eslint/eslint-plugin',
+    'prettier'
   ],
-  // add your custom rules here
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
+  root: true,
+  env: {
+    node: true,
+    jest: true,
+  },
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
-    // allow async-await
-    'generator-star-spacing': 'off',
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-  }
-}
+    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    "indent": ["warn", 4],
+    "max-len": ["warn", { "code": 120 }],
+    "prettier/prettier": "off"
+  },
+};
